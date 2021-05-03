@@ -13,13 +13,7 @@ Acquisition chain to characterize graphite sensor
 
 # Introduction
 
-Le capteur de déformation est constitué d'un morceau de papier sur lequel on dépose du graphite en coloriant avec un crayon à papier. Les particules de graphite
-forment alors un système granulaire. Ainsi lorsqu'on plie légèrement le papier, les particules s'éloignent ou se rapprochent les unes des autres (dépend du sens
-dans lequel on le plie). Dans le cas d'une compression (rapprochement des particules) l'effet tunnel fait qu'il y a plus d'électrons qui arrivent à passer d'une
-particule à une autre. Dans le cas d'une extension (éloignement des particules) c'est l'inverse qui se produit. Ainsi dans un cas la résistance diminue et dans 
-l'autre cas elle augmente. Nous pouvons mesurer cette variation de résistance en mesurant la variation de courant. 
-Ce capteur étant passif, il faut le conditionner. Pour cela nous introduisons un cirduit transimpédance qui amplifie le courant mesuré et le convertit en tension. 
-C'est cette tension qui est ensuite lue par l'entrée analogique de la carte Arduino.
+Le capteur de déformation est constitué d'un morceau de papier sur lequel on dépose du graphite en coloriant avec un crayon à papier. Les particules de graphite forment alors un système granulaire. Ainsi lorsqu'on plie légèrement le papier, les particules s'éloignent ou se rapprochent les unes des autres (dépend du sens dans lequel on le plie). Dans le cas d'une compression (rapprochement des particules) l'effet tunnel fait qu'il y a plus d'électrons qui arrivent à passer d'une particule à une autre. Dans le cas d'une extension (éloignement des particules) c'est l'inverse qui se produit. Ainsi dans un cas la résistance diminue et dans l'autre cas elle augmente. Nous pouvons mesurer cette variation de résistance en mesurant la variation de courant. Ce capteur étant passif, il faut le conditionner. Pour cela nous introduisons un cirduit transimpédance qui amplifie le courant mesuré et le convertit en tension. C'est cette tension qui est ensuite lue par l'entrée analogique de la carte Arduino.
 
 # Code Arduino
 
@@ -47,11 +41,13 @@ La valeur numérique de la résistance est ensuite affichée sur l'écran.
 
 # Banc de test et mesures
 
-Afin d'échantillonner notre capteur, nous avons conçu un banc de test à l'aide d'une imprimante 3D et d'un servomoteur. Nous avons imprimé un support en plastique qui 
-permet de maintenir le capteur et de fixer le servomoteur (voir photo dans la datasheet). Grâce à ce système, on peut plier le capteur avec différents angles et pour
-chaque valeur d'angle, mesurer la résistance. En faisant plusieurs miliers d'acquisitions on obtient suffisamment de points pour faire une analyse statistique sous python. Par
-régresion linéaire, on observe que pour un certain interval d'angle, la résistance décroit linéairement avec la déformation (voir courbes dans la datasheet). A noter
-que le type de graphite (B, 2B, HB ...) influence la variation de résistance.
+Afin d'échantillonner notre capteur, nous avons conçu un banc de test permettant d'obtenir la résistance du capteur pour un grand nombre de courbures différentes. 
+Le banc a été conçu sous SoliWorks et imprimé en PLA à l'aide d'une imprimante 3D. En faisant tourner un servomoteur contrôlé par le programme Arduino, nous pouvons ainsi
+mesurer la résistance du capteur pour des angles de courbure précis et un grand nombre de fois. En laissant le moteur faire des va-et-vient plusieurs minutes nous nous retrouvons
+rapidement avec plusieurs milliers de points dans le Serial Monitor. Il suffit ensuite de copier ces données dans un nouveau fichier texte dans le même dossier que le programme Python.
+En modifiant le nom du fichier texte à traîter dans le code puis en l'exécutant on obtient un nuage de point des valeurs de résistance en fonction de l'angle de courbure. 
+On observe que pour un certain interval d'angle, la résistance décroit linéairement avec la déformation (voir courbes dans la datasheet). A noter
+que le type de graphite (2H, 2B, HB ...) influence la variation de résistance.
 
 # Limites et pistes d'améliorations
 

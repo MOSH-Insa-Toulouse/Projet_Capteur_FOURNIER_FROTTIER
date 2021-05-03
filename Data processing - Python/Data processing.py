@@ -12,7 +12,7 @@ R3 = 100.0*(10.0**3);
 
 
 #Vectoring a text file
-with open('HB 30-70.txt') as f:
+with open('HB 20-150.txt') as f:
     lines = f.readlines()
     x = [-float(line.split()[0])+78 for line in lines]
     v = [float(line.split()[1])/1024.0*5.0 for line in lines]
@@ -20,8 +20,8 @@ with open('HB 30-70.txt') as f:
 
 #Getting rid of absurde values    
 for n in range(len(lines)):
-    y[n] = abs(((R1/R2)*((R2+R3)*Vcc)/v[n])-R1-R5)/1000.0/1000.0
-    if y[n] < 130 or y[n] > 1000:
+    y[n] = abs(((R1/R2)*((R2+R3)*Vcc)/(v[n]+0.000001))-R1-R5)/1000.0/1000.0
+    if y[n] < 0 or y[n] > 3000:
         y[n] = y[n-1]
 
 #Fitting a line    

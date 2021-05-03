@@ -92,7 +92,7 @@ void BT(){
 void loop() {
   
   pos_max = 150;
-  pos_min = 0;
+  pos_min = 20;
   
    for (pos = pos_min; pos <= pos_max; pos += 1) { 
     myservo.write(pos);           
