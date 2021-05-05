@@ -18,7 +18,7 @@ with open('HB 20-150.txt') as f:
     v = [float(line.split()[1])/1024.0*5.0 for line in lines]
     y = v
 
-#Getting rid of absurde values    
+#Getting rid of absurde values and converting tension into resistance
 for n in range(len(lines)):
     y[n] = abs(((R1/R2)*((R2+R3)*Vcc)/(v[n]+0.000001))-R1-R5)/1000.0/1000.0
     if y[n] < 0 or y[n] > 3000:
